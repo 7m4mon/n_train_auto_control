@@ -66,7 +66,7 @@ uint16_t maximum_pwm_duty, minimum_pwm_duty, refrector_threshold;
 #define STATE_TRAIN_STOP 2      //駅到着
 #define STATE_INIT 9
 
-#define SLOW_DOWN_STEP 5
+#define SLOW_DOWN_STEP 6
 
 /* 
 * アナログ入力がハイインピーダンスだと前の影響を受けて正しい値が出ないので
@@ -244,7 +244,6 @@ void setup() {
     // 閾値を半固定抵抗で調整するため、列車を停止センサの上にセットし、セットされたら黄→緑信号にする。
     // いきなりスタートしないように起動完了ボタン押下待ち
     while(digitalRead(PIN_BUTTON_INIT) == HIGH){
-            uint16_t refrector_threshold = analogReadHiz(PIN_VOL_THRESHOLD);
             check_sensor();
             digitalWrite(PIN_LED_RED_A, !control_a.sens_stop);
             digitalWrite(PIN_LED_RED_B, !control_b.sens_stop);
